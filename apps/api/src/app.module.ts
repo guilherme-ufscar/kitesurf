@@ -14,6 +14,7 @@ import { CommunitiesModule } from './modules/communities/communities.module'
 import { NotificationsModule } from './modules/notifications/notifications.module'
 import { AdminModule } from './modules/admin/admin.module'
 import { SitemapModule } from './modules/sitemap/sitemap.module'
+import { MailModule } from './modules/mail/mail.module'
 
 @Module({
   imports: [
@@ -32,6 +33,7 @@ import { SitemapModule } from './modules/sitemap/sitemap.module'
     NotificationsModule,
     AdminModule,
     SitemapModule,
+    MailModule,
   ],
 })
 export class AppModule {}

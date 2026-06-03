@@ -4,6 +4,7 @@ import { ConfigService } from '@nestjs/config'
 import * as bcrypt from 'bcryptjs'
 import { PrismaService } from '../../prisma/prisma.service'
 import { RegisterDto } from './dto/register.dto'
+import { MailService } from '../mail/mail.service'
 
 @Injectable()
 export class AuthService {
@@ -11,6 +12,7 @@ export class AuthService {
     private prisma: PrismaService,
     private jwt: JwtService,
     private config: ConfigService,
+    private mail: MailService,
   ) {}
 
   async register(dto: RegisterDto) {
@@ -20,6 +22,11 @@ export class AuthService {
     const passwordHash = await bcrypt.hash(dto.password, 12)
     const user = await this.prisma.user.create({
       data: { email: dto.email, name: dto.name, passwordHash },
+    })
+
+    // Send welcome email
+    this.mail.sendWelcomeEmail(user.email, user.name).catch((err) => {
+      console.error('Failed to send welcome email:', err)
     })
 
     return this.generateTokens(user.id, user.email)
