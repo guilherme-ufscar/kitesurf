@@ -21,9 +21,9 @@ COPY --from=builder /app/apps/api/dist ./dist
 COPY --from=builder /app/apps/api/package.json ./
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/apps/api/node_modules ./apps/api/node_modules
-COPY apps/api/prisma ./prisma
+COPY --from=builder /app/apps/api/prisma ./prisma
 
 RUN mkdir -p /app/uploads
 
-EXPOSE 3000
+EXPOSE 10209
 CMD ["sh", "-c", "npx prisma migrate deploy && node dist/main"]
