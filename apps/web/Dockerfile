@@ -6,7 +6,7 @@ RUN npm install -g pnpm
 COPY pnpm-workspace.yaml package.json ./
 COPY packages/shared ./packages/shared
 COPY apps/web/package.json ./apps/web/
-RUN pnpm install --frozen-lockfile
+RUN pnpm install
 
 COPY apps/web ./apps/web
 RUN pnpm --filter @kite360/web run build

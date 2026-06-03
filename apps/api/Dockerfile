@@ -6,7 +6,7 @@ RUN npm install -g pnpm
 COPY pnpm-workspace.yaml package.json ./
 COPY packages/shared ./packages/shared
 COPY apps/api/package.json ./apps/api/
-RUN pnpm install --frozen-lockfile
+RUN pnpm install
 
 COPY apps/api ./apps/api
 RUN pnpm --filter @kite360/api run prisma:generate
