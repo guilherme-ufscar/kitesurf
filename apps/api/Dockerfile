@@ -1,16 +1,18 @@
 FROM node:20-alpine AS builder
 WORKDIR /app
 
-RUN npm install -g pnpm
+# Use pnpm 9.x for better compatibility
+RUN npm install -g pnpm@9
 
-COPY pnpm-workspace.yaml package.json ./
+COPY pnpm-workspace.yaml package.json pnpm-lock.yaml .npmrc ./
 COPY packages/shared ./packages/shared
 COPY apps/api/package.json ./apps/api/
-RUN pnpm install
 
-COPY apps/api ./apps/api
 WORKDIR /app/apps/api
 RUN pnpm install
+
+COPY apps/api/src ./src
+COPY apps/api/prisma ./prisma
 RUN pnpm run prisma:generate
 RUN pnpm run build
 
