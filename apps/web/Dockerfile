@@ -9,7 +9,9 @@ COPY apps/web/package.json ./apps/web/
 RUN pnpm install
 
 COPY apps/web ./apps/web
-RUN pnpm --filter @kite360/web run build
+WORKDIR /app/apps/web
+RUN pnpm install
+RUN pnpm run build
 
 FROM nginx:alpine AS runner
 COPY --from=builder /app/apps/web/dist /usr/share/nginx/html

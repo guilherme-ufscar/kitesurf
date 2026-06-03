@@ -9,8 +9,10 @@ COPY apps/api/package.json ./apps/api/
 RUN pnpm install
 
 COPY apps/api ./apps/api
-RUN pnpm --filter @kite360/api run prisma:generate
-RUN pnpm --filter @kite360/api run build
+WORKDIR /app/apps/api
+RUN pnpm install
+RUN pnpm run prisma:generate
+RUN pnpm run build
 
 FROM node:20-alpine AS runner
 WORKDIR /app
