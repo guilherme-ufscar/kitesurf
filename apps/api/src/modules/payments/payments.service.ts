@@ -2,25 +2,43 @@ import { Injectable } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { PrismaService } from '../../prisma/prisma.service'
 import { PaymentType } from '@kite360/shared'
-import MercadoPagoConfig, { Preference } from 'mercadopago'
 
 @Injectable()
 export class PaymentsService {
-  private mp: MercadoPagoConfig
+  private mp: any = null
 
   constructor(
     private prisma: PrismaService,
     private config: ConfigService,
   ) {
-    this.mp = new MercadoPagoConfig({
-      accessToken: config.get('MERCADOPAGO_ACCESS_TOKEN') || '',
-    })
+    const accessToken = config.get('MERCADOPAGO_ACCESS_TOKEN')
+    if (accessToken) {
+      import('mercadopago').then(({ default: MercadoPago }) => {
+        this.mp = new MercadoPago({ accessToken })
+      })
+    }
   }
 
   async createFeaturedPayment(userId: string, listingId: string, days: number) {
     const prices: Record<number, number> = { 7: 29.9, 15: 49.9, 30: 89.9 }
     const amount = prices[days] || 29.9
 
+    if (!this.mp) {
+      // Modo demo - sem Mercado Pago configurado
+      const payment = await this.prisma.payment.create({
+        data: {
+          userId,
+          listingId,
+          type: PaymentType.FEATURED,
+          amount,
+          status: 'PENDING',
+          metadata: { days, demo: true },
+        },
+      })
+      return { checkoutUrl: null, preferenceId: payment.id, demo: true }
+    }
+
+    const { Preference } = await import('mercadopago')
     const preference = new Preference(this.mp)
     const result = await preference.create({
       body: {
