@@ -1,5 +1,3 @@
-version: '3.9'
-
 services:
   db:
     image: postgres:16-alpine
@@ -26,7 +24,8 @@ services:
   api:
     build:
       context: .
-      dockerfile: apps/api/Dockerfile
+      dockerfile: Dockerfile
+      target: api-runner
     container_name: kite360_api
     restart: unless-stopped
     env_file: .env
@@ -47,7 +46,8 @@ services:
   web:
     build:
       context: .
-      dockerfile: apps/web/Dockerfile
+      dockerfile: Dockerfile
+      target: web-runner
     container_name: kite360_web
     restart: unless-stopped
     networks:
