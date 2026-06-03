@@ -57,8 +57,8 @@ export class TranslateService {
       )
 
       return response.data.translatedText || text
-    } catch (err) {
-      this.logger.warn(`Translation failed: ${err.message}`)
+    } catch (err: any) {
+      this.logger.warn(`Translation failed: ${err?.message || err}`)
       return text
     }
   }

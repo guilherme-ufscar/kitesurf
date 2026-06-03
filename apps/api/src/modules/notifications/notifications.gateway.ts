@@ -10,7 +10,7 @@ import { Injectable, UseGuards } from '@nestjs/common'
 @Injectable()
 export class NotificationsGateway {
   @WebSocketServer()
-  server: Server
+  server!: Server
 
   private userSockets = new Map<string, Set<string>>()
 

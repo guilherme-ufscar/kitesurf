@@ -65,7 +65,7 @@ export class AdminService {
   }
 
   async updateUser(id: string, data: { isVerified?: boolean; verificationLevel?: string; subscriptionPlan?: string }) {
-    return this.prisma.user.update({ where: { id }, data })
+    return this.prisma.user.update({ where: { id }, data: data as any })
   }
 
   // Listings
@@ -109,7 +109,7 @@ export class AdminService {
   }
 
   async updateListing(id: string, data: { status?: string; isFeatured?: boolean; featuredUntil?: Date }) {
-    return this.prisma.listing.update({ where: { id }, data })
+    return this.prisma.listing.update({ where: { id }, data: data as any })
   }
 
   async deleteListing(id: string) {

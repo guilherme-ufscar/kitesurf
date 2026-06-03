@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { PrismaService } from '../../prisma/prisma.service'
 import { PaymentType } from '@kite360/shared'
+import { randomUUID } from 'crypto'
 
 @Injectable()
 export class PaymentsService {
@@ -42,7 +43,7 @@ export class PaymentsService {
     const preference = new Preference(this.mp)
     const result = await preference.create({
       body: {
-        items: [{ title: `Destaque do anúncio por ${days} dias`, quantity: 1, unit_price: amount }],
+        items: [{ id: randomUUID(), title: `Destaque do anúncio por ${days} dias`, quantity: 1, unit_price: amount }],
         metadata: { userId, listingId, type: PaymentType.FEATURED, days },
         back_urls: {
           success: `${this.config.get('API_URL')}/api/v1/payments/success`,

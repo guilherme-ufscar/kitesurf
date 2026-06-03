@@ -1,9 +1,11 @@
-import { IsString, IsUUID } from 'class-validator'
+import { IsString, IsUUID, IsNotEmpty } from 'class-validator'
 
 export class RefreshDto {
   @IsUUID()
-  userId: string
+  @IsNotEmpty()
+  userId!: string
 
   @IsString()
-  refreshToken: string
+  @IsNotEmpty()
+  refreshToken!: string
 }

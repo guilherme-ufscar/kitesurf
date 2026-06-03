@@ -1,31 +1,34 @@
 import {
-  IsString, IsNumber, IsEnum, IsOptional, IsArray, IsUrl, Min, MaxLength,
+  IsString, IsNumber, IsEnum, IsOptional, IsArray, IsUrl, Min, MaxLength, IsNotEmpty,
 } from 'class-validator'
 import { Condition, ListingStatus, Modality } from '@kite360/shared'
 
 export class CreateListingDto {
   @IsString()
+  @IsNotEmpty()
   @MaxLength(150)
-  title: string
+  title!: string
 
   @IsOptional()
   description?: any
 
   @IsNumber()
   @Min(0)
-  price: number
+  price!: number
 
   @IsEnum(Condition)
-  condition: Condition
+  condition!: Condition
 
   @IsEnum(Modality)
-  modality: Modality
+  modality!: Modality
 
   @IsString()
-  city: string
+  @IsNotEmpty()
+  city!: string
 
   @IsString()
-  state: string
+  @IsNotEmpty()
+  state!: string
 
   @IsOptional()
   @IsString()

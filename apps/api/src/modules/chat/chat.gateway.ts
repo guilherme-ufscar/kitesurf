@@ -9,7 +9,7 @@ import { ChatService } from './chat.service'
 @WebSocketGateway({ cors: { origin: '*' }, namespace: '/chat' })
 export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
   @WebSocketServer()
-  server: Server
+  server!: Server
 
   private userSockets = new Map<string, string>()
 

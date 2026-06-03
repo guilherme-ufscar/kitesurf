@@ -4,20 +4,20 @@ import { SearchDto } from './dto/search.dto'
 
 @Controller('search')
 export class SearchController {
-  constructor(private search: SearchService) {}
+  constructor(private searchSvc: SearchService) {}
 
   @Get()
   search(@Query() dto: SearchDto) {
-    return this.search.search(dto)
+    return this.searchSvc.search(dto)
   }
 
   @Get('featured')
   getFeatured(@Query('limit') limit?: string) {
-    return this.search.getFeatured(limit ? parseInt(limit) : 8)
+    return this.searchSvc.getFeatured(limit ? parseInt(limit) : 8)
   }
 
   @Get('recent')
   getRecent(@Query('limit') limit?: string) {
-    return this.search.getRecent(limit ? parseInt(limit) : 16)
+    return this.searchSvc.getRecent(limit ? parseInt(limit) : 16)
   }
 }

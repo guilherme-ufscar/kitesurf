@@ -19,10 +19,10 @@ export class SitemapController {
 
     const now = new Date().toISOString()
 
-    const urls = [
-      { loc: `${baseUrl}/`, changefreq: 'daily', priority: '1.0' },
-      { loc: `${baseUrl}/busca`, changefreq: 'daily', priority: '0.8' },
-      { loc: `${baseUrl}/cadastro`, changefreq: 'monthly', priority: '0.5' },
+    const sitemapEntries = [
+      { loc: `${baseUrl}/`, lastmod: null, changefreq: 'daily', priority: '1.0' },
+      { loc: `${baseUrl}/busca`, lastmod: null, changefreq: 'daily', priority: '0.8' },
+      { loc: `${baseUrl}/cadastro`, lastmod: null, changefreq: 'monthly', priority: '0.5' },
       ...listings.map((l) => ({
         loc: `${baseUrl}/anuncio/${l.slug}`,
         lastmod: new Date(l.updatedAt).toISOString().split('T')[0],
@@ -33,7 +33,7 @@ export class SitemapController {
 
     const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${urls
+${sitemapEntries
   .map(
     (u) => `  <url>
     <loc>${u.loc}</loc>
