@@ -8,7 +8,11 @@
     "lint": "eslint 'src/**/*.ts'",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate deploy",
-    "prisma:studio": "prisma studio"
+    "prisma:studio": "prisma studio",
+    "prisma:seed": "ts-node prisma/seed.ts"
+  },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
   },
   "dependencies": {
     "@kite360/shared": "workspace:*",
@@ -51,6 +55,7 @@
     "@types/passport-local": "^1.0.38",
     "@types/uuid": "^10.0.0",
     "prisma": "^5.19.0",
+    "ts-node": "^10.9.2",
     "typescript": "^5.5.4"
   }
 }
