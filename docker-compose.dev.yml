@@ -1,0 +1,48 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: kite360_db_dev
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: kite360
+      POSTGRES_USER: kite360
+      POSTGRES_PASSWORD: devpassword
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres_dev_data:/var/lib/postgresql/data
+    networks:
+      - dev
+
+  redis:
+    image: redis:7-alpine
+    container_name: kite360_redis_dev
+    restart: unless-stopped
+    ports:
+      - '6379:6379'
+    networks:
+      - dev
+
+  libretranslate:
+    image: libretranslate/libretranslate:latest
+    container_name: kite360_translate_dev
+    restart: unless-stopped
+    environment:
+      LT_LOAD_ONLY: pt,en,es
+      LT_DISABLE_WEB_UI: 'true'
+    ports:
+      - '5000:5000'
+    volumes:
+      - libretranslate_dev_data:/home/libretranslate/.local
+    networks:
+      - dev
+
+volumes:
+  postgres_dev_data:
+  libretranslate_dev_data:
+
+networks:
+  dev:
+    driver: bridge

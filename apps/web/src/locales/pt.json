@@ -1,0 +1,99 @@
+{
+  "nav": {
+    "buy": "Comprar",
+    "sell": "Anunciar",
+    "chat": "Mensagens",
+    "login": "Entrar",
+    "register": "Cadastrar",
+    "profile": "Meu Perfil",
+    "myListings": "Meus Anúncios",
+    "favorites": "Favoritos",
+    "logout": "Sair"
+  },
+  "home": {
+    "hero": {
+      "title": "O marketplace do kitesurf",
+      "subtitle": "Compre e venda equipamentos de kitesurf, wingfoil, kitefoil e kitewave com segurança.",
+      "searchPlaceholder": "Buscar equipamentos, marcas...",
+      "search": "Buscar",
+      "featured": "Em Destaque",
+      "recent": "Anúncios Recentes"
+    },
+    "categories": "Categorias"
+  },
+  "listing": {
+    "condition": {
+      "NEW": "Novo",
+      "LIKE_NEW": "Seminovo",
+      "USED": "Usado",
+      "FOR_PARTS": "Para Peças"
+    },
+    "modality": {
+      "KITESURF": "Kitesurf",
+      "WINGFOIL": "Wingfoil",
+      "KITEFOIL": "Kitefoil",
+      "KITEWAVE": "Kitewave",
+      "OTHER": "Outro"
+    },
+    "status": {
+      "DRAFT": "Rascunho",
+      "ACTIVE": "Ativo",
+      "PAUSED": "Pausado",
+      "SOLD": "Vendido",
+      "EXPIRED": "Expirado"
+    },
+    "contact": "Entrar em contato",
+    "favorite": "Favoritar",
+    "share": "Compartilhar",
+    "views": "visualizações",
+    "postedAt": "Publicado",
+    "sellerInfo": "Informações do vendedor",
+    "similarListings": "Anúncios similares",
+    "createTitle": "Criar anúncio",
+    "editTitle": "Editar anúncio",
+    "publish": "Publicar anúncio",
+    "saveDraft": "Salvar rascunho"
+  },
+  "auth": {
+    "loginTitle": "Bem-vindo de volta",
+    "registerTitle": "Criar conta",
+    "email": "E-mail",
+    "password": "Senha",
+    "name": "Nome completo",
+    "login": "Entrar",
+    "register": "Criar conta",
+    "forgotPassword": "Esqueci minha senha",
+    "noAccount": "Não tem conta?",
+    "hasAccount": "Já tem conta?"
+  },
+  "search": {
+    "filters": "Filtros",
+    "category": "Categoria",
+    "brand": "Marca",
+    "modality": "Modalidade",
+    "condition": "Condição",
+    "priceRange": "Faixa de preço",
+    "location": "Localização",
+    "results": "resultado(s)",
+    "noResults": "Nenhum anúncio encontrado",
+    "clearFilters": "Limpar filtros"
+  },
+  "verification": {
+    "verified": "Verificado",
+    "basic": "Básico",
+    "pro": "Pro"
+  },
+  "common": {
+    "loading": "Carregando...",
+    "error": "Ocorreu um erro",
+    "retry": "Tentar novamente",
+    "save": "Salvar",
+    "cancel": "Cancelar",
+    "confirm": "Confirmar",
+    "back": "Voltar",
+    "next": "Próximo",
+    "price": "Preço",
+    "currency": "R$",
+    "by": "por"
+  }
+}

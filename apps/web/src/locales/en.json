@@ -1,0 +1,99 @@
+{
+  "nav": {
+    "buy": "Buy",
+    "sell": "Sell",
+    "chat": "Messages",
+    "login": "Sign In",
+    "register": "Sign Up",
+    "profile": "My Profile",
+    "myListings": "My Listings",
+    "favorites": "Favorites",
+    "logout": "Sign Out"
+  },
+  "home": {
+    "hero": {
+      "title": "The kitesurf marketplace",
+      "subtitle": "Buy and sell kitesurf, wingfoil, kitefoil and kitewave equipment safely.",
+      "searchPlaceholder": "Search equipment, brands...",
+      "search": "Search",
+      "featured": "Featured",
+      "recent": "Recent Listings"
+    },
+    "categories": "Categories"
+  },
+  "listing": {
+    "condition": {
+      "NEW": "New",
+      "LIKE_NEW": "Like New",
+      "USED": "Used",
+      "FOR_PARTS": "For Parts"
+    },
+    "modality": {
+      "KITESURF": "Kitesurf",
+      "WINGFOIL": "Wingfoil",
+      "KITEFOIL": "Kitefoil",
+      "KITEWAVE": "Kitewave",
+      "OTHER": "Other"
+    },
+    "status": {
+      "DRAFT": "Draft",
+      "ACTIVE": "Active",
+      "PAUSED": "Paused",
+      "SOLD": "Sold",
+      "EXPIRED": "Expired"
+    },
+    "contact": "Contact seller",
+    "favorite": "Save",
+    "share": "Share",
+    "views": "views",
+    "postedAt": "Posted",
+    "sellerInfo": "Seller information",
+    "similarListings": "Similar listings",
+    "createTitle": "Create listing",
+    "editTitle": "Edit listing",
+    "publish": "Publish listing",
+    "saveDraft": "Save draft"
+  },
+  "auth": {
+    "loginTitle": "Welcome back",
+    "registerTitle": "Create account",
+    "email": "Email",
+    "password": "Password",
+    "name": "Full name",
+    "login": "Sign In",
+    "register": "Create account",
+    "forgotPassword": "Forgot password",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?"
+  },
+  "search": {
+    "filters": "Filters",
+    "category": "Category",
+    "brand": "Brand",
+    "modality": "Modality",
+    "condition": "Condition",
+    "priceRange": "Price range",
+    "location": "Location",
+    "results": "result(s)",
+    "noResults": "No listings found",
+    "clearFilters": "Clear filters"
+  },
+  "verification": {
+    "verified": "Verified",
+    "basic": "Basic",
+    "pro": "Pro"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "retry": "Retry",
+    "save": "Save",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "back": "Back",
+    "next": "Next",
+    "price": "Price",
+    "currency": "R$",
+    "by": "by"
+  }
+}

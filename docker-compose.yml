@@ -1,0 +1,92 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: kite360_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: kite360
+      POSTGRES_USER: kite360
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-changeme}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - internal
+
+  redis:
+    image: redis:7-alpine
+    container_name: kite360_redis
+    restart: unless-stopped
+    volumes:
+      - redis_data:/data
+    networks:
+      - internal
+
+  api:
+    build:
+      context: ./apps/api
+      dockerfile: Dockerfile
+    container_name: kite360_api
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      DATABASE_URL: postgresql://kite360:${DB_PASSWORD:-changeme}@db:5432/kite360
+      REDIS_URL: redis://redis:6379
+    depends_on:
+      - db
+      - redis
+    volumes:
+      - uploads_data:/app/uploads
+    networks:
+      - internal
+
+  web:
+    build:
+      context: ./apps/web
+      dockerfile: Dockerfile
+    container_name: kite360_web
+    restart: unless-stopped
+    networks:
+      - internal
+
+  libretranslate:
+    image: libretranslate/libretranslate:latest
+    container_name: kite360_translate
+    restart: unless-stopped
+    environment:
+      LT_LOAD_ONLY: pt,en,es
+      LT_DISABLE_WEB_UI: 'true'
+    volumes:
+      - libretranslate_data:/home/libretranslate/.local
+    networks:
+      - internal
+
+  nginx:
+    image: nginx:alpine
+    container_name: kite360_nginx
+    restart: unless-stopped
+    ports:
+      - '80:80'
+      - '443:443'
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - uploads_data:/uploads:ro
+      - nginx_certs:/etc/nginx/certs
+    depends_on:
+      - api
+      - web
+    networks:
+      - internal
+
+volumes:
+  postgres_data:
+  redis_data:
+  uploads_data:
+  libretranslate_data:
+  nginx_certs:
+
+networks:
+  internal:
+    driver: bridge
