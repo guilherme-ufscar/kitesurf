@@ -22,35 +22,36 @@ services:
       - internal
 
   api:
-    build:
-      context: .
-      dockerfile: Dockerfile
-      target: api-runner
+    image: node:20-alpine
     container_name: kite360_api
     restart: unless-stopped
+    working_dir: /app
     env_file: .env
     environment:
       DATABASE_URL: postgresql://kite360:${DB_PASSWORD:-changeme}@db:5432/kite360
       REDIS_URL: redis://redis:6379
       API_PORT: 10212
       NODE_ENV: production
+    command: sh -c "npm install -g pnpm && pnpm install && pnpm --filter @kite360/api prisma generate && pnpm --filter @kite360/api start"
+    volumes:
+      - .:/app
+      - uploads_data:/app/uploads
     ports:
       - '10212:10212'
     depends_on:
       - db
       - redis
-    volumes:
-      - uploads_data:/app/uploads
     networks:
       - internal
 
   web:
-    build:
-      context: .
-      dockerfile: Dockerfile
-      target: web-runner
+    image: node:20-alpine
     container_name: kite360_web
     restart: unless-stopped
+    working_dir: /app
+    command: sh -c "npm install -g pnpm serve && pnpm install && pnpm --filter @kite360/web build && serve -s /app/apps/web/dist -l 10212"
+    volumes:
+      - .:/app
     networks:
       - internal
 
