@@ -32,7 +32,7 @@ services:
       REDIS_URL: redis://redis:6379
       API_PORT: 10212
       NODE_ENV: production
-    command: sh -c "npm install -g pnpm && pnpm install && pnpm --filter @kite360/api run prisma:generate && pnpm --filter @kite360/api start"
+    command: sh -c "npm install -g pnpm && pnpm install && pnpm --filter @kite360/api run prisma:generate && pnpm --filter @kite360/api run start:dev"
     volumes:
       - .:/app
       - uploads_data:/app/uploads
