@@ -20,18 +20,20 @@ RUN pnpm run build
 # Runner stage for API
 FROM node:20-alpine AS api-runner
 WORKDIR /app
+RUN npm install -g pnpm
+
+COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/apps/api/dist ./dist
 COPY --from=builder /app/apps/api/package.json ./
-COPY --from=builder /app/apps/api/node_modules ./node_modules
 COPY --from=builder /app/apps/api/prisma ./prisma
-RUN mkdir -p /app/uploads
-EXPOSE 10209
-CMD ["sh", "-c", "npx prisma migrate deploy && node dist/main"]
 
-# Runner stage for Web (serves on port 10209)
+RUN mkdir -p /app/uploads
+
+EXPOSE 10212
+CMD ["node", "dist/main"]
+
+# Runner stage for Web (internal, no exposed port)
 FROM node:20-alpine AS web-runner
 WORKDIR /app
 RUN npm install -g serve
 COPY --from=builder /app/apps/web/dist /app/dist
-EXPOSE 10212
-CMD ["serve", "-s", "/app/dist", "-l", "10212"]
