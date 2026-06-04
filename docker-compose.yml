@@ -32,7 +32,7 @@ services:
       REDIS_URL: redis://redis:6379
       API_PORT: 10212
       NODE_ENV: production
-    command: sh -c "npm install -g pnpm && pnpm install && cd apps/api && pnpm run prisma:generate && npx tsc && node dist/main"
+    command: sh -c "npm install -g pnpm && pnpm install && cd apps/api && pnpm run prisma:generate && rm -rf dist && npx tsc --incremental false && ls dist/ && node dist/main"
     volumes:
       - .:/app
       - uploads_data:/app/uploads
