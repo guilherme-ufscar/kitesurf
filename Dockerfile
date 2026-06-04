@@ -19,10 +19,13 @@ RUN pnpm run build
 
 # Runner stage for API
 FROM node:20-alpine AS api-runner
-WORKDIR /app
+WORKDIR /app/apps/api
+
 RUN npm install -g pnpm
 
+# Copy workspace node_modules
 COPY --from=builder /app/node_modules ./node_modules
+# Copy api-specific files
 COPY --from=builder /app/apps/api/dist ./dist
 COPY --from=builder /app/apps/api/package.json ./
 COPY --from=builder /app/apps/api/prisma ./prisma
