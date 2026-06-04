@@ -51,8 +51,6 @@ services:
       target: web-runner
     container_name: kite360_web
     restart: unless-stopped
-    ports:
-      - '10212:10212'
     networks:
       - internal
 
