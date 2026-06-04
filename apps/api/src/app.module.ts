@@ -9,7 +9,6 @@ import { SearchModule } from './modules/search/search.module'
 import { ChatModule } from './modules/chat/chat.module'
 import { ReviewsModule } from './modules/reviews/reviews.module'
 import { PaymentsModule } from './modules/payments/payments.module'
-import { TranslateModule } from './modules/translate/translate.module'
 import { CommunitiesModule } from './modules/communities/communities.module'
 import { NotificationsModule } from './modules/notifications/notifications.module'
 import { AdminModule } from './modules/admin/admin.module'
@@ -35,5 +34,4 @@ import { MailModule } from './modules/mail/mail.module'
     MailModule,
   ],
 })
-export class AppModule {}
 export class AppModule {}
