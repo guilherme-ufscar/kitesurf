@@ -32,10 +32,10 @@ services:
     environment:
       DATABASE_URL: postgresql://kite360:${DB_PASSWORD:-changeme}@db:5432/kite360
       REDIS_URL: redis://redis:6379
-      API_PORT: 10209
+      API_PORT: 10212
       NODE_ENV: production
     ports:
-      - '10209:10209'
+      - '10212:10212'
     depends_on:
       - db
       - redis
@@ -52,7 +52,7 @@ services:
     container_name: kite360_web
     restart: unless-stopped
     ports:
-      - '10209:10209'
+      - '10212:10212'
     networks:
       - internal
 

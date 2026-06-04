@@ -33,5 +33,5 @@ FROM node:20-alpine AS web-runner
 WORKDIR /app
 RUN npm install -g serve
 COPY --from=builder /app/apps/web/dist /app/dist
-EXPOSE 10209
-CMD ["serve", "-s", "/app/dist", "-l", "10209"]
+EXPOSE 10212
+CMD ["serve", "-s", "/app/dist", "-l", "10212"]

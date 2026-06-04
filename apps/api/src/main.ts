@@ -32,7 +32,7 @@ async function bootstrap() {
     SwaggerModule.setup('api/docs', app, document)
   }
 
-  const port = process.env.API_PORT || 10209
+  const port = process.env.API_PORT || 10212
   await app.listen(port, '0.0.0.0')
   console.log(`KITE360º API running on port ${port}`)
 }
