@@ -28,9 +28,10 @@ RUN mkdir -p /app/uploads
 EXPOSE 10209
 CMD ["sh", "-c", "npx prisma migrate deploy && node dist/main"]
 
-# Runner stage for Web
-FROM nginx:alpine AS web-runner
-COPY --from=builder /app/apps/web/dist /usr/share/nginx/html
-COPY --from=builder /app/apps/web/nginx.conf /etc/nginx/conf.d/default.conf
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+# Runner stage for Web (serves on port 10209)
+FROM node:20-alpine AS web-runner
+WORKDIR /app
+RUN npm install -g serve
+COPY --from=builder /app/apps/web/dist /app/dist
+EXPOSE 10209
+CMD ["serve", "-s", "/app/dist", "-l", "10209"]
