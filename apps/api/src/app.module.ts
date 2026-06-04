@@ -28,7 +28,6 @@ import { MailModule } from './modules/mail/mail.module'
     ChatModule,
     ReviewsModule,
     PaymentsModule,
-    TranslateModule,
     CommunitiesModule,
     NotificationsModule,
     AdminModule,
@@ -36,4 +35,5 @@ import { MailModule } from './modules/mail/mail.module'
     MailModule,
   ],
 })
+export class AppModule {}
 export class AppModule {}
